@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  wiki:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./wiki-content:/usr/share/nginx/html:ro
+    networks:
+      - wiki-network
+
+networks:
+  wiki-network:
+    driver: bridge

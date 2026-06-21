@@ -1,0 +1,31 @@
+{
+  "prometheus": {
+    "status": "configured",
+    "targets": [
+      {"job": "node-core", "instance": "10.10.30.120:9100"},
+      {"job": "node-dev", "instance": "10.10.30.121:9100"},
+      {"job": "node-minecraft", "instance": "10.10.30.122:9100"},
+      {"job": "node-files", "instance": "10.10.30.123:9100"},
+      {"job": "node-media", "instance": "10.10.30.124:9100"},
+      {"job": "node-kali", "instance": "10.10.30.125:9100"},
+      {"job": "caddy", "instance": "127.0.0.1:9100"},
+      {"job": "cadvisor", "instance": "127.0.0.1:8080"}
+    ]
+  },
+  "uptime_kuma": {
+    "status": "configured",
+    "base_url": "http://10.10.30.120:3001",
+    "monitors": [
+      {"name": "wiki.grid", "type": "http", "url": "https://wiki.grid"},
+      {"name": "prometheus.grid", "type": "http", "url": "https://prometheus.grid"},
+      {"name": "grafana.grid", "type": "http", "url": "https://grafana.grid"},
+      {"name": "kuma.grid", "type": "http", "url": "https://kuma.grid"},
+      {"name": "portainer.grid", "type": "tcp", "url": "10.10.30.120:9443"},
+      {"name": "pve.grid", "type": "tcp", "url": "10.10.30.22:8006"}
+    ]
+  },
+  "blackbox_exporter": {
+    "status": "pending",
+    "notes": "To be configured for HTTP services"
+  }
+}
