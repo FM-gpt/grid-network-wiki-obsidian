@@ -1,22 +1,39 @@
-# Active Tasks — GRID Network Wiki
+# Active Tasks — GRID Network Wiki (Sprint 11)
 
-## Current Status (Updated: 2026-06-21)
+## Current Status (Updated: 2026-06-23 16:30 ACST)
 
-| Task ID | Description | Status | Assignee | Last Updated |
-|---|---|---|---|---|
-| TASK-02 | Fix volume mount + restart Caddy for wiki.grid | **COMPLETED** | SELF | 2026-06-21 14:30 ACST |
-| TASK-03 | Create wiki service Compose file | **COMPLETED** | SELF | 2026-06-21 14:35 ACST |
-| TASK-04 | Verify Caddy route for wiki.grid | **COMPLETED** | SELF | 2026-06-21 14:40 ACST |
-| Phase 1 | Discovery Engine — Build overnight agent workers | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
-| Phase 2 | Wiki Engine — Templates and markdown pages | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
-| Phase 3 | Dashboard UI — Browse/search wiki | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
-| Phase 4 | Kanban Boards — Maintenance + Change boards | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
-| Phase 5 | Cron Jobs — Overnight Hermes worker automation | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
-| Phase 6 | Monitoring — Prometheus, Uptime Kuma auto-setup | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
-| Phase 7 | Obsidian Sync — Bidirectional sync | **PARKED** | EMPTY | 2026-06-21 14:45 ACST |
+### Sprint 11: Adversarial UX Fixes
+
+| Task ID | Description | Status | Assignee |
+|---------|-------------|--------|----------|
+| T11-01 | Sidebar navigation on ALL pages | **In Progress** | SELF |
+| T11-02 | Fix 5 missing API endpoints | Parked | |
+| T11-03 | Fix Active Tasks widget | Parked | |
+| T11-04 | Fix Wiki browser readability | Parked | |
+| T11-05 | Fix Monitoring page status consistency | Parked | |
+| T11-06 | Fix Wiki viewer — directory browser | Parked | |
+| T11-07 | Add onboarding/empty-state flow | Parked | |
+| T11-08 | Add export functionality | Parked | |
+| T11-09 | Add breadcrumb + home navigation | Parked | |
+| T11-10 | Add "Add Project" visual feedback | Parked | |
+| T11-11 | Fix "Browse Wiki" vs "Wiki Viewer" naming | Parked | |
+| T11-12 | Fix Settings page /api/settings | Parked | |
+| T11-13 | Fix dead links (site.html, apiDocs) | Parked | |
+| T11-14 | Wire up chatbot backend | Parked | |
+
+### Previous Sprints (Superseded)
+- Sprint 10 (Phases 20-29): **SUPERSEDED** by Sprint 11
+- Phases 0-19: **SUPERSEDED** — prior "complete" claims marked UNDELIVERED
+
+## Key Files
+- Sprint Plan: [11 - Sprint Plan — Adversarial UX Fixes.md](11 - Sprint Plan — Adversarial UX Fixes.md)
+- Wiki Service: /Users/tron/grid-network-wiki-tool/wiki-service.py
+- Dashboard: /Users/tron/grid-network-wiki-tool/dashboard/
+- Wiki Service Running: port 8082
+- Active URL: http://10.10.30.130:8082/index.html
 
 ## Notes
-- Wiki content is fully deployed to CT120 at `/srv/grid-wiki/`
-- Python HTTP server running on port 8082 serving wiki files
-- Caddy volume mount issue resolved by switching to standalone wiki service
-- Next step: Phase 1 (Discovery Engine)
+- All fixes must be made in local workspace first (`/Users/tron/grid-network-wiki-tool/`)
+- Deploy to CT130 only after local verification
+- Verify via browser QA after each deployment
+- Run adversarial UX test after all fixes are complete
