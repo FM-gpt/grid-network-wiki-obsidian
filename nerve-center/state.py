@@ -252,8 +252,9 @@ class StateManager:
             cur = conn.execute(
                 "INSERT INTO wiki_documents "
                 "(title, slug, category, content, source, "
-                "related_service_id, related_container_id, last_updated) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+                "related_service_id, related_container_id, status, properties, "
+                "entity_type, entity_id, version, last_updated) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
                 (
                     doc['title'],
                     doc['slug'],
@@ -262,6 +263,11 @@ class StateManager:
                     doc.get('source', 'agent-generated'),
                     doc.get('related_service_id'),
                     doc.get('related_container_id'),
+                    doc.get('status', 'active'),
+                    doc.get('properties', ''),
+                    doc.get('entity_type'),
+                    doc.get('entity_id'),
+                    doc.get('version', 1),
                     doc.get('last_updated', datetime.now().isoformat()),
                 ),
             )
@@ -274,7 +280,7 @@ class StateManager:
     def get_wiki_documents(self, category: str = None, related_service_id: int = None) -> List[dict]:
         with sqlite3.connect(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
-            query = "SELECT id, title, slug, category, source, related_service_id, last_updated FROM wiki_documents WHERE 1=1"
+            query = "SELECT * FROM wiki_documents WHERE 1=1"
             params = []
             if category is not None:
                 query += " AND category = ?"
@@ -292,6 +298,23 @@ class StateManager:
             cur = conn.execute("SELECT * FROM wiki_documents WHERE slug = ?", (slug,))
             row = cur.fetchone()
             return dict(row) if row else None
+
+    def update_wiki_document(self, doc_id: int, updates: dict) -> bool:
+        """Update a wiki document by ID."""
+        conn = sqlite3.connect(self.db_path)
+        try:
+            set_parts = []
+            params = []
+            for key, value in updates.items():
+                set_parts.append(f"{key} = ?")
+                params.append(value)
+            params.append(doc_id)
+            query = f"UPDATE wiki_documents SET {', '.join(set_parts)} WHERE id = ?"
+            conn.execute(query, params)
+            conn.commit()
+            return True
+        finally:
+            conn.close()
 
     # --- Agent Actions ---
 

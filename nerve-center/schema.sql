@@ -82,6 +82,11 @@ CREATE TABLE IF NOT EXISTS wiki_documents (
     source TEXT NOT NULL,
     related_service_id INTEGER REFERENCES services(id),
     related_container_id INTEGER REFERENCES containers(id),
+    status TEXT NOT NULL DEFAULT 'active',
+    properties TEXT,
+    entity_type TEXT,
+    entity_id TEXT,
+    version INTEGER NOT NULL DEFAULT 1,
     last_updated TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
