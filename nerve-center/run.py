@@ -97,6 +97,7 @@ def run_both(config: dict) -> None:
     """Run both services in the same process."""
     # Start Agent API in background thread
     import threading
+    from http.server import HTTPServer
 
     agent_server = None
     nerve_server = None
