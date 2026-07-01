@@ -30,10 +30,11 @@ class KnowledgeGraphManager:
         # Check if entity already exists
         existing = self.state.get_wiki_document_by_slug(wiki_doc['slug'])
         if existing:
-            # Update existing
+            # Update existing (reset status to active if previously deleted)
             self.state.update_wiki_document(existing['id'], {
                 'content': wiki_doc['content'],
                 'properties': json.dumps(properties),
+                'status': 'active',
                 'updated_at': wiki_doc['updated_at'],
             })
             return existing['id']
