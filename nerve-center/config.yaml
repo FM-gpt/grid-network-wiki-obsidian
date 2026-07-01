@@ -1,0 +1,74 @@
+# GRID Network Nerve Center Configuration
+
+## Database
+database:
+  path: "./data/nerve_center.db"
+  schema: "schema.sql"
+
+## Proxmox Integration
+proxmox:
+  api_url: "https://10.10.30.22:8006/api2/json"
+  api_user: "root@pam"
+  api_token_name: "nerve-center"
+  api_token_secret: ""  # Set via environment: PROXMOX_API_TOKEN_SECRET
+  verify_ssl: true
+  timeout: 30
+
+## Discovery Pipeline
+discovery:
+  enabled: true
+  interval: 300  # seconds (5 minutes)
+  incremental: true
+  max_entities: 1000
+
+## Service Verification
+verification:
+  enabled: true
+  interval: 60  # seconds
+  timeout: 10  # seconds per service
+  retry_count: 3
+  retry_delay: 5
+
+## Alerting
+alerts:
+  enabled: true
+  thresholds:
+    service_down: 1
+    service_degraded: 2
+    server_down: 1
+  notification:
+    type: "webhook"  # webhook, email, log
+    url: ""  # webhook URL
+
+## Wiki Generation
+wiki:
+  enabled: true
+  auto_generate: true
+  categories:
+    - server
+    - container
+    - service
+  template_dir: "./templates"
+
+## HTTP Service
+http:
+  nerve_center:
+    enabled: true
+    host: "0.0.0.0"
+    port: 8765
+  agent_api:
+    enabled: true
+    host: "0.0.0.0"
+    port: 8766
+
+## Knowledge Graph
+knowledge_graph:
+  max_connections: 10000
+  search_enabled: true
+  connected_components: true
+
+## Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
+  file: "./logs/nerve_center.log"
