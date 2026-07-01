@@ -240,7 +240,7 @@ class ServiceVerifier:
         servers = self.state.list_servers()
         containers = self.state.list_containers()
         services = self.state.list_services()
-        components = self.state.get_connected_components() if self.kgm else []
+        components = self.kgm.get_connected_components() if self.kgm else []
 
         report = {
             'generated_at': datetime.now().isoformat(),
