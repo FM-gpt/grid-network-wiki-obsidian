@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Protocol — GRID Network Wiki</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Agent Protocol</span>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn btn-secondary">← Home</a>
+            <button onclick="dashboardApp.refreshAgents()">🔄 Refresh</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><h3>Navigation</h3></div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Main</div>
+                    <a href="index.html" class="sidebar-link">📊 Dashboard</a>
+                    <a href="monitoring.html" class="sidebar-link">📈 Monitoring</a>
+                    <a href="drift.html" class="sidebar-link">🔒 Drift Reports</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Kanban</div>
+                    <a href="kanban/change.html" class="sidebar-link">📋 Change Kanban</a>
+                    <a href="kanban/maintenance.html" class="sidebar-link">🔧 Maintenance</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Wiki</div>
+                    <a href="wiki-browser.html" class="sidebar-link">📚 Wiki Browser</a>
+                    <a href="sites.html" class="sidebar-link">🌐 Sites Overview</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">System</div>
+                    <a href="agents.html" class="sidebar-link active">🤖 Agent Protocol</a>
+                    <a href="settings.html" class="sidebar-link">⚙️ Settings</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><p>GRID Wiki v1.0</p></div>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-bold">Agent Protocol</h1>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">AGENTS.md</h2>
+                </div>
+                <div class="table-container">
+                    <pre class="p-4" style="background: var(--gray-50); border-radius: var(--radius); font-size: 13px; line-height: 1.6; overflow-x: auto;">Loading agent protocol...</pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="sidebar-toggle" onclick="sidebar.toggle()">☰</button>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/chatbox.js"></script>
+    <script>
+        const originalRender = DashboardApp.prototype.renderCurrentView;
+        DashboardApp.prototype.renderCurrentView = async function() {
+            const container = document.getElementById('main-content');
+            await this.renderAgents(container);
+        };
+    </script>
+</body>
+</html>

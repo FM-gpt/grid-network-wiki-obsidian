@@ -1,0 +1,36 @@
+{
+  "last_check": "2026-07-01T12:00:00Z",
+  "prometheus": {
+    "url": "http://10.10.30.120:9090",
+    "total_targets": 25,
+    "up": 23,
+    "down": 2
+  },
+  "uptime_kuma": {
+    "url": "http://10.10.30.120:3001",
+    "configured": 10,
+    "down": 1
+  },
+  "services": [
+    {
+      "name": "fmsa-web",
+      "type": "http",
+      "url": "http://10.10.30.122:8080",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 34,
+      "prometheus_job": "fmsa-web",
+      "port": 8080
+    },
+    {
+      "name": "fmsa-api",
+      "type": "http",
+      "url": "http://10.10.30.122:8081",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 28,
+      "prometheus_job": "fmsa-api",
+      "port": 8081
+    }
+  ]
+}

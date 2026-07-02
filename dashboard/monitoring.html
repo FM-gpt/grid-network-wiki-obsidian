@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Status — GRID Network Wiki</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+            <span>Monitoring Status</span>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn btn-secondary">← Home</a>
+            <button onclick="dashboardApp.refreshMonitoring()">🔄 Refresh</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><h3>Navigation</h3></div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Main</div>
+                    <a href="index.html" class="sidebar-link">📊 Dashboard</a>
+                    <a href="monitoring.html" class="sidebar-link active">📈 Monitoring</a>
+                    <a href="drift.html" class="sidebar-link">🔒 Drift Reports</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Kanban</div>
+                    <a href="kanban/change.html" class="sidebar-link">📋 Change Kanban</a>
+                    <a href="kanban/maintenance.html" class="sidebar-link">🔧 Maintenance</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Wiki</div>
+                    <a href="wiki-browser.html" class="sidebar-link">📚 Wiki Browser</a>
+                    <a href="sites.html" class="sidebar-link">🌐 Sites Overview</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">System</div>
+                    <a href="agents.html" class="sidebar-link">🤖 Agent Protocol</a>
+                    <a href="settings.html" class="sidebar-link">⚙️ Settings</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><p>GRID Wiki v1.0</p></div>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <div class="spinner"></div>
+            <p class="text-center text-muted">Loading monitoring status...</p>
+        </main>
+    </div>
+
+    <button class="sidebar-toggle" onclick="sidebar.toggle()">☰</button>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/chatbox.js"></script>
+    <script>
+        // Override renderCurrentView for monitoring page
+        const originalRender = DashboardApp.prototype.renderCurrentView;
+        DashboardApp.prototype.renderCurrentView = async function() {
+            const container = document.getElementById('main-content');
+            await this.renderMonitoring(container);
+            
+            // Update header timestamp
+            const monitoring = await this.api.getMonitoringStatus();
+            const timestampEl = document.getElementById('last-updated');
+            if (timestampEl && monitoring.last_check) {
+                timestampEl.textContent = `Last check: ${this.formatDate(monitoring.last_check)}`;
+            }
+        };
+    </script>
+</body>
+</html>

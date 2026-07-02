@@ -1,0 +1,72 @@
+{
+  "last_check": "2026-07-01T12:00:00Z",
+  "prometheus": {
+    "url": "http://10.10.30.120:9090",
+    "total_targets": 73,
+    "up": 69,
+    "down": 4,
+    "down_targets": [
+      {"job": "grid-llamacpp-gpu", "instance": "10.10.30.128:8080", "health": "down", "notes": "GPU service down (expected)"},
+      {"job": "grid-llamacpp-gpu", "instance": "10.10.30.128:8081", "health": "down", "notes": "GPU service down (expected)"},
+      {"job": "grid-lxcs", "instance": "10.10.30.125:9100", "health": "down", "notes": "CT125 placeholder (expected)"},
+      {"job": "grid-test-env-cadvisor", "instance": "10.10.30.121:8081", "health": "down", "notes": "Test env cadvisor (expected)"}
+    ]
+  },
+  "uptime_kuma": {
+    "url": "http://10.10.30.120:3001",
+    "configured": 20,
+    "down": 3
+  },
+  "services": [
+    {
+      "name": "caddy",
+      "type": "http",
+      "url": "http://10.10.30.120:8080",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 15,
+      "prometheus_job": "grid-admin-http",
+      "port": 8080
+    },
+    {
+      "name": "prometheus",
+      "type": "http",
+      "url": "http://10.10.30.120:9090",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 23,
+      "prometheus_job": "grid-prometheus",
+      "port": 9090
+    },
+    {
+      "name": "grafana",
+      "type": "http",
+      "url": "http://10.10.30.120:3000",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 45,
+      "prometheus_job": "grid-grafana",
+      "port": 3000
+    },
+    {
+      "name": "uptime-kuma",
+      "type": "http",
+      "url": "http://10.10.30.120:3001",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 12,
+      "prometheus_job": "grid-uptime-kuma",
+      "port": 3001
+    },
+    {
+      "name": "wiki-service",
+      "type": "http",
+      "url": "http://10.10.30.131:8082",
+      "status": "up",
+      "last_check": "2026-07-01T12:00:00Z",
+      "response_time_ms": 67,
+      "prometheus_job": "grid-wiki-service",
+      "port": 8082
+    }
+  ]
+}

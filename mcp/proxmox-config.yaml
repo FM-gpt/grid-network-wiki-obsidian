@@ -1,0 +1,52 @@
+# MCP Configuration for Proxmox
+# Used by GRID Wiki for infrastructure discovery
+
+mcp_servers:
+  proxmox:
+    type: http
+    url: https://grid-pve:8006/api2/json
+    auth:
+      type: token
+      token_env: PROXMOX_API_TOKEN
+    options:
+      verify_ssl: false
+      timeout: 30
+      retries: 3
+    
+    # API endpoints to monitor
+    endpoints:
+      - path: /nodes
+        method: GET
+        description: "List all nodes"
+      - path: /nodes/{node}/status
+        method: GET
+        description: "Get node status"
+      - path: /nodes/{node}/qemu
+        method: GET
+        description: "List VMs"
+      - path: /nodes/{node}/lxc
+        method: GET
+        description: "List containers"
+      - path: /cluster/resources
+        method: GET
+        description: "Get all resources"
+    
+    # Discovery settings
+    discovery:
+      interval: 3600  # 1 hour
+      cache_ttl: 300  # 5 minutes
+      include:
+        - nodes
+        - vm
+        - lxc
+        - storage
+        - network
+    
+    # Alert settings
+    alerts:
+      enabled: true
+      thresholds:
+        cpu_usage: 90
+        memory_usage: 85
+        disk_usage: 90
+        network_down: 1000  # Mbps

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — GRID Network Wiki</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>Settings</span>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn btn-secondary">← Home</a>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><h3>Navigation</h3></div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Main</div>
+                    <a href="index.html" class="sidebar-link">📊 Dashboard</a>
+                    <a href="monitoring.html" class="sidebar-link">📈 Monitoring</a>
+                    <a href="drift.html" class="sidebar-link">🔒 Drift Reports</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Kanban</div>
+                    <a href="kanban/change.html" class="sidebar-link">📋 Change Kanban</a>
+                    <a href="kanban/maintenance.html" class="sidebar-link">🔧 Maintenance</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Wiki</div>
+                    <a href="wiki-browser.html" class="sidebar-link">📚 Wiki Browser</a>
+                    <a href="sites.html" class="sidebar-link">🌐 Sites Overview</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">System</div>
+                    <a href="agents.html" class="sidebar-link">🤖 Agent Protocol</a>
+                    <a href="settings.html" class="sidebar-link active">⚙️ Settings</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><p>GRID Wiki v1.0</p></div>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-bold">Settings</h1>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Dashboard Settings</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Wiki Root</label>
+                        <input type="text" id="wiki-root" class="btn btn-secondary w-full" value="N/A" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Theme</label>
+                        <select id="theme" class="btn btn-secondary w-full">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Auto-refresh (seconds)</label>
+                        <input type="number" id="auto-refresh" class="btn btn-secondary w-full" value="30" min="10" max="300">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                        <select id="language" class="btn btn-secondary w-full">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="dashboardApp.saveSettings()">Save Settings</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="sidebar-toggle" onclick="sidebar.toggle()">☰</button>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/chatbox.js"></script>
+    <script>
+        const originalRender = DashboardApp.prototype.renderCurrentView;
+        DashboardApp.prototype.renderCurrentView = async function() {
+            const container = document.getElementById('main-content');
+            await this.renderSettings(container);
+        };
+    </script>
+</body>
+</html>

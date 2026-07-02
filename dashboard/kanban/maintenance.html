@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Kanban — GRID Network Wiki</title>
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/sidebar.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+            <span>Maintenance Kanban</span>
+        </div>
+        <div class="header-actions">
+            <a href="../index.html" class="btn btn-secondary">← Home</a>
+            <button onclick="dashboardApp.createMaintenanceCard()">➕ New Task</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><h3>Navigation</h3></div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Main</div>
+                    <a href="../index.html" class="sidebar-link">📊 Dashboard</a>
+                    <a href="../monitoring.html" class="sidebar-link">📈 Monitoring</a>
+                    <a href="../drift.html" class="sidebar-link">🔒 Drift Reports</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Kanban</div>
+                    <a href="change.html" class="sidebar-link">📋 Change Kanban</a>
+                    <a href="maintenance.html" class="sidebar-link active">🔧 Maintenance</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Wiki</div>
+                    <a href="../wiki-browser.html" class="sidebar-link">📚 Wiki Browser</a>
+                    <a href="../sites.html" class="sidebar-link">🌐 Sites Overview</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">System</div>
+                    <a href="../agents.html" class="sidebar-link">🤖 Agent Protocol</a>
+                    <a href="../settings.html" class="sidebar-link">⚙️ Settings</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><p>GRID Wiki v1.0</p></div>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-bold">Maintenance Kanban</h1>
+                <button class="btn btn-primary" onclick="dashboardApp.createMaintenanceCard()">New Task</button>
+            </div>
+
+            <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Open</h2>
+                        <span class="badge badge-gray" id="open-count">0</span>
+                    </div>
+                    <div id="open-tasks"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">In Progress</h2>
+                        <span class="badge badge-warning" id="progress-count">0</span>
+                    </div>
+                    <div id="progress-tasks"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Resolved</h2>
+                        <span class="badge badge-success" id="resolved-count">0</span>
+                    </div>
+                    <div id="resolved-tasks"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="sidebar-toggle" onclick="sidebar.toggle()">☰</button>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/chatbox.js"></script>
+    <script>
+        const originalRender = DashboardApp.prototype.renderCurrentView;
+        DashboardApp.prototype.renderCurrentView = async function() {
+            const container = document.getElementById('main-content');
+            await this.renderKanban(container);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "last_sync": "2026-06-30T02:00:00Z",
+  "vault_path": "/Users/tron/Documents/Obsidian Vault/GRID Network Wiki",
+  "overlay_path": "/Users/tron/grid-network-wiki-tool/wiki-content",
+  "files": [
+    {
+      "path": "wiki-content/sites/grid/monitoring-status.json",
+      "size": 2117,
+      "checksum": "abc123def456"
+    },
+    {
+      "path": "wiki-content/sites/fmsa/monitoring-status.json",
+      "size": 783,
+      "checksum": "def456ghi789"
+    },
+    {
+      "path": "wiki-content/grid-services.md",
+      "size": 411,
+      "checksum": "ghi789jkl012"
+    },
+    {
+      "path": "wiki-content/grid-monitoring-stack.md",
+      "size": 424,
+      "checksum": "jkl012mno345"
+    },
+    {
+      "path": "wiki-content/health-report.md",
+      "size": 318,
+      "checksum": "mno345pqr678"
+    }
+  ],
+  "total_files": 198,
+  "last_check": "2026-06-30T02:00:00Z"
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-06-30T02:00:00Z",
+  "vault_path": "/Users/tron/Documents/Obsidian Vault/GRID Network Wiki",
+  "overlay_path": "/Users/tron/grid-network-wiki-tool/wiki-content",
+  "vault_files": 152,
+  "overlay_files": 198,
+  "vault_only": ["file-a.md", "file-b.md"],
+  "overlay_only": ["file-c.md", "file-d.md"],
+  "modified_files": [
+    {"path": "file-e.md", "vault_hash": "abc123", "overlay_hash": "def456"}
+  ],
+  "drift_detected": true,
+  "baseline_file": "last-checksums.md5",
+  "baseline_entries": 198
+}

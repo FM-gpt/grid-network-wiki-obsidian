@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki Browser — GRID Network Wiki</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span>Wiki Browser</span>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn btn-secondary">← Home</a>
+            <input type="text" id="wiki-search" class="btn btn-secondary" placeholder="Search wiki..." 
+                   oninput="dashboardApp.searchWiki(this.value)" style="width: 200px;">
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><h3>Navigation</h3></div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Main</div>
+                    <a href="index.html" class="sidebar-link">📊 Dashboard</a>
+                    <a href="monitoring.html" class="sidebar-link">📈 Monitoring</a>
+                    <a href="drift.html" class="sidebar-link">🔒 Drift Reports</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Kanban</div>
+                    <a href="kanban/change.html" class="sidebar-link">📋 Change Kanban</a>
+                    <a href="kanban/maintenance.html" class="sidebar-link">🔧 Maintenance</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Wiki</div>
+                    <a href="wiki-browser.html" class="sidebar-link active">📚 Wiki Browser</a>
+                    <a href="sites.html" class="sidebar-link">🌐 Sites Overview</a>
+                </div>
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">System</div>
+                    <a href="agents.html" class="sidebar-link">🤖 Agent Protocol</a>
+                    <a href="settings.html" class="sidebar-link">⚙️ Settings</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><p>GRID Wiki v1.0</p></div>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <div class="spinner"></div>
+            <p class="text-center text-muted">Loading wiki pages...</p>
+        </main>
+    </div>
+
+    <button class="sidebar-toggle" onclick="sidebar.toggle()">☰</button>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/chatbox.js"></script>
+    <script>
+        const originalRender = DashboardApp.prototype.renderCurrentView;
+        DashboardApp.prototype.renderCurrentView = async function() {
+            const container = document.getElementById('main-content');
+            await this.renderWikiBrowser(container);
+        };
+    </script>
+</body>
+</html>

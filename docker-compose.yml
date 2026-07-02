@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  wiki-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: grid-wiki-service
+    ports:
+      - "8082:8082"
+      - "8083:8083"
+    volumes:
+      - ./wiki-content:/app/wiki-content
+      - ./wiki:/app/wiki
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8082/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  wiki-sse:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: grid-wiki-sse
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./wiki-content:/app/wiki-content
+    restart: unless-stopped

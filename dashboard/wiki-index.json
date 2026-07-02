@@ -1,0 +1,71 @@
+{
+  "pages": [
+    {
+      "slug": "grid-infrastructure-overview",
+      "title": "GRID Infrastructure Overview",
+      "path": "wiki/grid-infrastructure-overview.md",
+      "category": "infrastructure",
+      "tags": ["grid", "infrastructure", "overview"],
+      "status": "active",
+      "last_updated": "2026-06-30T12:00:00Z",
+      "size_bytes": 4096
+    },
+    {
+      "slug": "sites-overview",
+      "title": "Sites Overview",
+      "path": "wiki/sites-overview.md",
+      "category": "infrastructure",
+      "tags": ["grid", "sites", "overview"],
+      "status": "active",
+      "last_updated": "2026-06-30T12:00:00Z",
+      "size_bytes": 2048
+    },
+    {
+      "slug": "monitoring-stack",
+      "title": "Monitoring Stack",
+      "path": "wiki-content/grid-monitoring-stack.md",
+      "category": "monitoring",
+      "tags": ["monitoring", "prometheus", "grafana"],
+      "status": "active",
+      "last_updated": "2026-06-30T12:00:00Z",
+      "size_bytes": 8192
+    },
+    {
+      "slug": "health-report",
+      "title": "Health Report",
+      "path": "wiki-content/health-report.md",
+      "category": "monitoring",
+      "tags": ["health", "report", "monitoring"],
+      "status": "active",
+      "last_updated": "2026-06-30T12:00:00Z",
+      "size_bytes": 1024
+    },
+    {
+      "slug": "grid-services",
+      "title": "GRID Services",
+      "path": "wiki-content/grid-services.md",
+      "category": "services",
+      "tags": ["grid", "services", "overview"],
+      "status": "active",
+      "last_updated": "2026-06-30T12:00:00Z",
+      "size_bytes": 3072
+    }
+  ],
+  "sites": [
+    {
+      "name": "GRID",
+      "path": "sites/grid",
+      "status": "active",
+      "service_count": 12,
+      "monitoring_status": "configured"
+    },
+    {
+      "name": "FMSA",
+      "path": "sites/fmsa",
+      "status": "active",
+      "service_count": 8,
+      "monitoring_status": "configured"
+    }
+  ],
+  "generated_at": "2026-07-01T12:00:00Z"
+}
