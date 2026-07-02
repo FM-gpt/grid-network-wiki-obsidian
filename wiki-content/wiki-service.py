@@ -11,8 +11,8 @@ from urllib.parse import urlparse, parse_qs
 # Configuration
 PORT = 8082
 WIKI_DIR = Path(os.environ.get('WIKI_DIR', '/srv/grid-wiki'))
-WIKI_CONTENT_DIR = Path(os.environ.get('WIKI_CONTENT_DIR', '/Users/tron/Documents/Obsidian Vault/Projects/GRID Network Wiki/tool/wiki-content'))
-DASHBOARD_DIR = Path(os.environ.get('DASHBOARD_DIR', '/Users/tron/Documents/Obsidian Vault/Projects/GRID Network Wiki/tool/dashboard'))
+WIKI_CONTENT_DIR = Path(os.environ.get('WIKI_CONTENT_DIR', '/srv/grid-wiki-tool/wiki-content'))
+DASHBOARD_DIR = Path(os.environ.get('DASHBOARD_DIR', '/srv/grid-wiki-tool/dashboard'))
 WIKI_INDEX_PATH = DASHBOARD_DIR / 'wiki-index.json'
 
 class WikiServer:
