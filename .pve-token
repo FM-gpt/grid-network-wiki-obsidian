@@ -1,0 +1,4 @@
+# Proxmox API Token for nerve-center
+# Created: 2026-07-01
+TOKEN_ID="root@pam!nerve-center"
+TOKEN_SECRET="760740a6-f2b1-40ec-9314-61c00b5e119c"
