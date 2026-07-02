@@ -7,7 +7,7 @@ set -e
 echo "Deploying GRID Wiki to CT131..."
 
 # Define paths
-LOCAL_DIR="/Users/tron/Documents/Obsidian Vault/Projects/GRID Network Wiki/tool"
+LOCAL_DIR="/Users/tron/Documents/Obsidian Vault/Projects/GRID Network Wiki tool"
 REMOTE_USER="root"
 REMOTE_HOST="10.10.30.131"
 REMOTE_DIR="/opt/grid-wiki"
