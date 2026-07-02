@@ -10,7 +10,7 @@ proxmox:
   api_url: "https://10.10.30.22:8006/api2/json"
   api_user: "root@pam"
   api_token_name: "nerve-center"
-  api_token_secret: ""  # Set via environment: PROXMOX_API_TOKEN_SECRET
+  api_token_secret: "760740a6-f2b1-40ec-9314-61c00b5e119c"
   verify_ssl: true
   timeout: 30
 
