@@ -65,7 +65,12 @@ class WikiServer:
         """Calculate relevance score for a page."""
         score = 0
         # Title match (highest priority)
-        title = Path(content.split('\n')[0] if content.startswith('#') else content.split('#')[1].split('\n')[0] if '#' in content else '').strip()
+        if content.startswith('#'):
+            title = content.split('\n')[0].strip()
+        elif '#' in content:
+            title = content.split('#')[1].split('\n')[0].strip()
+        else:
+            title = ''
         if query in title.lower():
             score += 100
         # Content match
